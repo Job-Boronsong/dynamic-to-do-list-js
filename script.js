@@ -1,53 +1,89 @@
-// Wait for the entire DOM to be loaded before running the script
-document.addEventListener('DOMContentLoaded', function () {
-    // Select DOM elements
+Here's the JavaScript code (`script.js`) based on your requirements:
+
+```javascript
+// Setup Event Listener for Page Load
+document.addEventListener('DOMContentLoaded', function() {
+    // Select DOM Elements
     const addButton = document.getElementById('add-task-btn');
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
 
-    // Function to add a new task
+    // Create the addTask Function
     function addTask() {
-        const taskText = taskInput.value.trim(); // Get and trim input
+        // Retrieve and trim the value from the task input field
+        const taskText = taskInput.value.trim();
 
-        if (taskText === '') {
-            alert('Please enter a task.');
+        // Check if taskText is not empty
+        if (taskText === "") {
+            // Alert the user to enter a task if input is empty
+            alert("Please enter a task!");
             return;
         }
 
-        // Create list item element
-        const listItem = document.createElement('li');
-        listItem.textContent = taskText;
+        // Task Creation and Removal
+        // Create a new li element
+        const li = document.createElement('li');
+        li.textContent = taskText;
 
-        // Create remove button
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = 'Remove';
-        removeBtn.className = 'remove-btn';
+        // Create a new button element for removing the task
+        const removeButton = document.createElement('button');
+        removeButton.textContent = "Remove";
+        removeButton.className = 'remove-btn';
 
-        // Remove task when remove button is clicked
-        removeBtn.onclick = function () {
-            taskList.removeChild(listItem);
+        // Assign onclick event to remove button
+        removeButton.onclick = function() {
+            // Remove the li element from taskList when clicked
+            taskList.removeChild(li);
         };
 
-        // Append remove button to list item
-        listItem.appendChild(removeBtn);
+        // Append the remove button to the li element
+        li.appendChild(removeButton);
 
-        // Add list item to task list
-        taskList.appendChild(listItem);
+        // Append the li to taskList
+        taskList.appendChild(li);
 
-        // Clear input field
-        taskInput.value = '';
+        // Clear the task input field
+        taskInput.value = "";
     }
 
-    // Add task on button click
+    // Attach Event Listeners
+    // Add event listener to addButton for click events
     addButton.addEventListener('click', addTask);
 
-    // Add task on Enter key press
-    taskInput.addEventListener('keypress', function (event) {
+    // Add event listener to taskInput for keypress events
+    taskInput.addEventListener('keypress', function(event) {
+        // Check if Enter key was pressed
         if (event.key === 'Enter') {
+            // Call addTask when Enter is pressed
             addTask();
         }
     });
-
-    // Optional: run once on load to initialize (not needed unless pre-loading tasks)
-    // addTask();
 });
+```
+
+### Key Features of the Code:
+
+1. **DOMContentLoaded Event**: Ensures all code runs after the HTML document is fully loaded.
+
+2. **DOM Element Selection**: Uses `document.getElementById()` to select the button, input field, and task list.
+
+3. **addTask Function**:
+   - Retrieves and trims the input value
+   - Validates that the input is not empty
+   - Creates a new list item with the task text
+   - Creates a remove button with proper styling class
+   - Attaches a click handler to remove the task
+   - Appends everything to the task list
+   - Clears the input field
+
+4. **Event Listeners**:
+   - Click event on the "Add Task" button
+   - Keypress event on the input field to detect Enter key
+
+5. **Comments**: Included throughout to explain each major step.
+
+The application allows users to:
+- Add tasks by clicking the "Add Task" button
+- Add tasks by pressing Enter in the input field
+- Remove individual tasks by clicking their "Remove" button
+- Get prompted if they try to add an empty task
