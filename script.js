@@ -1,6 +1,3 @@
-Here's the JavaScript code (`script.js`) based on your requirements:
-
-```javascript
 // Setup Event Listener for Page Load
 document.addEventListener('DOMContentLoaded', function() {
     // Select DOM Elements
